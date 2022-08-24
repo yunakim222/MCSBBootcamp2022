@@ -6,17 +6,14 @@ c= -0.8;
 d= 0.156;
 
 x = zeros(1,nMax); 
-x(1) = 0.1; 
-
 y = zeros(1,nMax); 
-y(1) = 0.1; 
 
-for n=2:nMax
-    
-    x(n) = x(n-1)^2 - y(n-1)^2 + c;
-    y(n) = 2 * x(n-1) * y(n-1) + d;
-
-end % finished loop through days
+% for n=2:nMax
+%     
+%     x(n) = x(n-1)^2 - y(n-1)^2 + c;
+%     y(n) = 2 * x(n-1) * y(n-1) + d;
+% 
+% end
 
 % THE MODEL ^
 % ------------------------------------------
@@ -31,25 +28,26 @@ trials = 10^5;
 xStart = 4*rand(1,trials)-2;
 yStart = 4*rand(1,trials)-2;
 
-plot(xStart(1), yStart(1), '.k');
-
+% plot(xStart(1), yStart(1), '.k');
 % ----------------------------
-red = zeros(1,trials); %1 if red 0 if blue
 
 for i = 1:trials
     
     x(1) = xStart(i);
     y(1) = yStart(i);
+    n_at_exit = 1;
 
     for n=2:nMax 
         x(n) = x(n-1)^2 - y(n-1)^2 + c;
         y(n) = 2 * x(n-1) * y(n-1) + d;
+
+        if (x(n) < 2 && x(n) > -2 && y(n) < 2 && y(n) > -2)
+            n_at_exit = n_at_exit + 1;
+        else 
+            break;
+        end
     end
-    if ((x(22) < 2) && (x(22) >-2)) 
-        plot(xStart(i), yStart(i), '.b');
-        hold on
-    else 
-        plot(xStart(i), yStart(i), '.r');
-        hold on
-    end
+    scatter(xStart(i), yStart(i),2, n_at_exit);
+    colormap(jet(22))
+    hold on
 end
