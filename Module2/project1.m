@@ -26,16 +26,17 @@ end % finished loop through days
 % plot(x,y,'ok');
 % ylabel('x(n)')
 % xlabel('n')
+trials = 10^5;
 
-xStart = 4*rand(1,100)-2;
-yStart = 4*rand(1,100)-2;
+xStart = 4*rand(1,trials)-2;
+yStart = 4*rand(1,trials)-2;
 
-plot(xStart(1), yStart(1), 'ok');
+plot(xStart(1), yStart(1), '.k');
 
 % ----------------------------
-red = zeros(1,100); %1 if red 0 if blue
+red = zeros(1,trials); %1 if red 0 if blue
 
-for i = 1:100
+for i = 1:trials
     
     x(1) = xStart(i);
     y(1) = yStart(i);
@@ -45,10 +46,10 @@ for i = 1:100
         y(n) = 2 * x(n-1) * y(n-1) + d;
     end
     if ((x(22) < 2) && (x(22) >-2)) 
-        plot(xStart(i), yStart(i), 'ob');
+        plot(xStart(i), yStart(i), '.b');
         hold on
     else 
-        plot(xStart(i), yStart(i), 'or');
+        plot(xStart(i), yStart(i), '.r');
         hold on
     end
 end
