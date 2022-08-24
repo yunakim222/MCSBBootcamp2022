@@ -1,0 +1,57 @@
+% Project 1
+
+nMax = 22; % max number of days to simulate
+
+c= -0.8;
+d= 0.156;
+
+x = zeros(1,nMax); 
+x(1) = 1; 
+
+y = zeros(1,nMax); 
+y(1) = 1; 
+
+for n=2:nMax
+    
+    x(n) = x(n-1)^2 - y(n-1)^2 + c;
+    y(n) = 2 * x(n-1) * y(n-1) + d;
+
+end % finished loop through days
+
+% THE MODEL ^
+% ------------------------------------------
+% THE BEHAVIOR / THE OUTPUT ? 
+% 
+% figure(1); 
+% plot(x,y,'ok');
+% ylabel('x(n)')
+% xlabel('n')
+
+xStart = 4*rand(1,100)-2;
+yStart = 4*rand(1,100)-2;
+
+plot(xStart(1), yStart(1), 'ok');
+
+% ----------------------------
+red = zeros(1,100); %1 if red 0 if blue
+
+for i = 1:100
+    
+    c= -0.8;
+    d= 0.156;
+    xCalc = zeros(1,nMax); 
+    yCalc = zeros(1,nMax); 
+    xCalc(1) = xStart(i)
+    yCalc(1) = yStart(i)
+
+    for n=2:nMax 
+        xCalc(n) = xCalc(n-1)^2 - yCalc(n-1)^2 + c;
+        yCalc(n) = 2 * xCalc(n-1) * yCalc(n-1) + d;
+    end
+    if ((xCalc(22) < 2) && (xCalc(22) >-2)) 
+        red(i) = ';
+    else 
+        red(i) = 1;
+    end
+end
+ plot(xStart(i), yStart(i), 'ok');
