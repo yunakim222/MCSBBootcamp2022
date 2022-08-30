@@ -23,7 +23,7 @@ dxdt = @(t,x)[f(x(1),x(2),x(3),x(4));
 
 [T, X] = ode45(dxdt, [0,15], [0.0,0.0,1.0,0.0] ); 
 
-figure; hold on;
+figure(1); hold on;
 plot(T,X(:,1),'-r'); % red for d[A]/dt
 plot(T,X(:,2),'-b'); % blue for d[AP]/dt
 plot(T,X(:,3),'-g'); % green for d[I]/dt
@@ -44,7 +44,7 @@ kcata = 100;
 ptot = 1;
 
 figure(2); hold on;
-nMax = 100;
+nMax = 1000;
 x = zeros(1, nMax);
 y = zeros(1, nMax);
 for ind = 1:nMax
@@ -85,7 +85,7 @@ kcata = 100;
 ptot = 1;
 
 figure(3); hold on;
-nMax = 100;
+nMax = 1000;
 x = zeros(1, nMax);
 y = zeros(1, nMax);
 for ind = 1:nMax
