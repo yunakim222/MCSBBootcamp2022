@@ -15,6 +15,7 @@ Art-side Team:
 Back Team:
 * Cameron 
 * Lorenzo
+* Yuna
 
 
 
